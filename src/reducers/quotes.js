@@ -13,10 +13,10 @@ export default (state = [], action) => {
     //     }
     //   })
 
+    case 'UPVOTE_QUOTE':
     let index
     let quote
 
-    case 'UPVOTE_QUOTE':
      index = state.findIndex(quote => quote.id === action.quoteId);
      quote = state[index];
 
@@ -33,7 +33,7 @@ export default (state = [], action) => {
         } else {
           return quote
         }
-      })
+      });
 
     default:
       return state;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuoteCard from '../components/QuoteCard';
-import { addQuote, removeQuote, upvoteQuote, downvoteQuote } from '../reducers/quotes.js'
+// These are being imported into mapDispatchToProps, THEN turned into props
+// Pull from action not reducers
+import { addQuote, removeQuote, upvoteQuote, downvoteQuote } from '../actions/quotes.js'
 
 class Quotes extends Component {
 
@@ -20,7 +22,9 @@ class Quotes extends Component {
   // )}
 
   render() {
-    const { quotes, removeQuote, upvoteQuote, downvoteQuote } = this.props;
+    // const { quotes, removeQuote, upvoteQuote, downvoteQuote } = this.props;
+    // Look into descructuring props???
+    const {quotes} = this.props;
 
     return (
       <div>
@@ -37,7 +41,7 @@ class Quotes extends Component {
 
                 Render Quotes With QuoteCard component and pass down callback props for removing, upvoting and downvoting quotes
                */}
-             {quotes.map(quote => <QuoteCard key={quote.id} id={quote.id} upvoteQuote={upvoteQuote} downvoteQuote={downvoteQuote} removeQuote={removeQuote} quotes={quotes} />)}
+             {quotes.map(quote => <QuoteCard key={quote.id} id={quote.id} upvoteQuote={this.props.upvoteQuote} downvoteQuote={this.props.downvoteQuote} removeQuote={this.props.removeQuote} quotes={quotes} />)}
             </div>
           </div>
         </div>
@@ -53,4 +57,4 @@ const mapStateToProps = (state) => {
 }
 
 //add arguments to connect as needed
-export default connect(mapStateToProps, { addQuote, removeQuote, upvoteQuote, downvoteQuote })(Quotes);
+export default connect(mapStateToProps, { removeQuote, upvoteQuote, downvoteQuote })(Quotes);

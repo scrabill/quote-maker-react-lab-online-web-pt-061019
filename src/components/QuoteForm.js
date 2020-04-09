@@ -3,34 +3,32 @@ import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { addQuote } from '../actions/quotes';
 
-// QuoteForm Component
-//     ✓ renders without crashing (45ms)
-//     ✓ always renders a form tag
-//     9) always renders a textarea[name="content"] tag for quote content
-//     10) always renders a input[name="author"] tag for quote author
-//     11) should control its inputs based on internal state
-//     12) should handleOnSubmit and preventDefault()
-//     13) should reset state after form handleOnSubmit
-//     14) should modify the store on handleOnSubmit
 
 class QuoteForm extends Component {
 
+  // state = {
+  //   //set up a controlled form with internal state
+  //   quote: {
+  //     id: uuid(),
+  //     content: '',
+  //     author: '',
+  //     votes: 0
+  //   }
+  // }
+
   state = {
     //set up a controlled form with internal state
-    quote: {
-      id: uuid(),
-      content: '',
-      author: ''
-    }
+    // id: uuid(),
+    content: '',
+    author: '',
+    votes: 0
   }
 
   handleOnChange = event => {
     // Handle Updating Component State
-    const key = event.target.name
+    let key = event.target.name
     this.setState({
-      quote: {
         key: event.target.value
-      }
     })
   }
 
@@ -40,12 +38,18 @@ class QuoteForm extends Component {
     // Pass quote object to action creator
     // Update component state to return to default state
     event.preventDefault()
+    let quoteObj = {
+      ...this.state
+    }
 
+    // Updating, with teh action creator
+    this.props.addQuote(quoteObj)
+
+    // Resetting to blank
     this.setState({
-      quote: {
         content: '',
-        author: ''
-      }
+        author: '',
+        votes: 0
     })
   }
 
@@ -61,6 +65,7 @@ class QuoteForm extends Component {
                     <label htmlFor="content" className="col-md-4 control-label">Quote</label>
                     <div className="col-md-5">
                       <textarea
+                        type="text"
                         name="content"
                         className="form-control"
                         value={this.state.content}
@@ -95,8 +100,10 @@ class QuoteForm extends Component {
   }
 }
 
-const mapDispatchToProps = () => {
-  
+const mapDispatchToProps = (dispatch) => {
+ return {
+   addQuote: quoteObj => dispatch(addQuote(quoteObj))
+ }
 }
 
 //add arguments to connect as needed
