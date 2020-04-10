@@ -1,4 +1,6 @@
 import React from 'react';
+import uuid from 'uuid'
+import {connect} from 'react-redux'
 import { addQuote, removeQuote, upvoteQuote, downvoteQuote } from '../actions/quotes.js'
 
 const QuoteCard = ({quote, upvoteQuote, downvoteQuote}) =>
@@ -15,12 +17,14 @@ const QuoteCard = ({quote, upvoteQuote, downvoteQuote}) =>
           <button
             type="button"
             className="btn btn-primary"
+            onClick={() => upvoteQuote(quote.id)}
           >
             Upvote
           </button>
           <button
             type="button"
             className="btn btn-secondary"
+            onClick={() => downvoteQuote(quote.id)}
           >
             Downvote
           </button>
@@ -36,4 +40,5 @@ const QuoteCard = ({quote, upvoteQuote, downvoteQuote}) =>
     </div>
   </div>;
 
+// export default connect(null, { addQuote})(QuoteCard);
 export default QuoteCard;

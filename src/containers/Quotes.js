@@ -22,9 +22,9 @@ class Quotes extends Component {
   // )}
 
   render() {
-    // const { quotes, removeQuote, upvoteQuote, downvoteQuote } = this.props;
+    const { quotes, removeQuote, upvoteQuote, downvoteQuote } = this.props;
     // Look into descructuring props???
-    const {quotes} = this.props;
+    // const {quotes} = this.props;
 
     return (
       <div>
@@ -41,7 +41,7 @@ class Quotes extends Component {
 
                 Render Quotes With QuoteCard component and pass down callback props for removing, upvoting and downvoting quotes
                */}
-             {quotes.map(quote => <QuoteCard key={quote.id} id={quote.id} upvoteQuote={this.props.upvoteQuote} downvoteQuote={this.props.downvoteQuote} removeQuote={this.props.removeQuote} quotes={quotes} />)}
+             {quotes.map(quote => <QuoteCard key={quote.id} upvoteQuote={upvoteQuote} downvoteQuote={downvoteQuote} removeQuote={removeQuote} quote={quote} />)}
             </div>
           </div>
         </div>
