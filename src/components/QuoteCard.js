@@ -1,7 +1,6 @@
 import React from 'react';
-import uuid from 'uuid'
-import {connect} from 'react-redux'
-import { addQuote, removeQuote, upvoteQuote, downvoteQuote } from '../actions/quotes.js'
+// import {connect} from 'react-redux'
+import {upvoteQuote, downvoteQuote } from '../actions/quotes.js'
 
 const QuoteCard = ({quote, upvoteQuote, downvoteQuote}) =>
   <div>
@@ -17,7 +16,7 @@ const QuoteCard = ({quote, upvoteQuote, downvoteQuote}) =>
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => upvoteQuote(quote.id)}
+            onClick={this.upvoteQuote(quote.id)}
           >
             Upvote
           </button>
