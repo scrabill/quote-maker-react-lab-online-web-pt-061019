@@ -43,6 +43,7 @@ class QuoteForm extends Component {
                       <input
                         className="form-control"
                         type="text"
+                        name="content"
                         value={this.state.author}
                       />
                     </div>
