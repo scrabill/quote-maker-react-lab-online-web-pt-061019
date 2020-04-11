@@ -14,6 +14,7 @@ const QuoteCard = (props) =>
           <button
             type="button"
             className="btn btn-primary"
+            onClick={this.upvoteQuote}
           >
             Upvote
           </button>
